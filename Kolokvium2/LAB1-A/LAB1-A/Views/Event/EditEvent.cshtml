@@ -1,0 +1,28 @@
+﻿@model LAB1_A.Models.Event
+@{
+    ViewBag.Title = "EditEvent";
+}
+
+<h2>Edit Event</h2>
+
+@using (Html.BeginForm("EditEvent", "Event"))
+{
+    <div class="form-group">
+        @Html.LabelFor(e => e.Id)
+        @Html.TextBoxFor(e => e.Id, new { @class = "form-control", @disabled = "disabled" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(e => e.ime)
+        @Html.TextBoxFor(e => e.ime, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(e => e.lokacija)
+        @Html.TextBoxFor(e => e.lokacija, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+

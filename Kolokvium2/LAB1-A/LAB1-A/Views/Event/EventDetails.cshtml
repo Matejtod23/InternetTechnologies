@@ -1,0 +1,16 @@
+﻿@model LAB1_A.Models.Event
+@{
+    ViewBag.Title = "EventDetails";
+}
+
+
+
+<h2>Event Details</h2>
+<ul>
+    <li>@Model.Id</li>
+    <li>@Model.ime</li>
+    <li>@Model.lokacija</li>
+</ul>
+
+@Html.ActionLink("Back", "DisplayEvents", new { @class = "link" });
+

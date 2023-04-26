@@ -1,0 +1,22 @@
+﻿@model Aud1_MVC.Models.MovieRentals
+@{
+    ViewBag.Title = "Random"; //mora da e ist so kontrolerot
+}
+
+<h2>@Model.movie.Name</h2>
+<h5>@Model.movie.Rating</h5>
+<img src="@Model.movie.ImageUrl" />
+
+<h5>Clients:</h5>
+<ul>
+    @{
+        //C# CODE mozhe da se pisuva
+        int i = 0;
+        foreach (var client in Model.clients)
+        {
+            <li style="list-style:none"><a href="ShowClient/@i">@client.Name, @client.ClientsCard</a></li>
+            
+            i++;
+        }
+    }
+</ul>

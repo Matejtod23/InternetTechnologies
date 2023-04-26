@@ -1,0 +1,42 @@
+﻿@model List<LAB1_A.Models.Event>
+@{
+    ViewBag.Title = "DisplayEvents";
+}
+
+<h2>Events</h2>
+
+<div class="row">
+    @Html.ActionLink("Add event", "NewEvent", new { style="background: blue", @class = "btn bt-primary"})
+</div>
+
+<table class="table-bordered">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Ime</td>
+            <td>Lokacija</td>
+            <td>Akcija</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var e in Model)
+            {
+                <tr>
+                    <td>@e.Id</td>
+                    <td>@e.ime</td>
+                    <td>@e.lokacija</td>
+                    <td>
+                        <button class="btn-primary">
+                            @Html.ActionLink("Edit", "EditEvent", new {id = e.Id })
+                        </button> 
+                        <button>
+                            @Html.ActionLink("Delete", "DeleteEvent", new { id = e.Id})
+                        </button>
+                   </td>
+                </tr>
+            }
+    </tbody>
+</table>
+
+
+
