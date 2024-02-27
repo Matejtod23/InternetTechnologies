@@ -1,0 +1,45 @@
+﻿.gameTitle {
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    text-align: center;
+    height: 50px;
+}
+.buttons a {
+    text-decoration: none;
+    padding-left: 10px; 
+}
+.buttons {
+    border: none;
+    margin-top: -10px;
+    display: flex;
+    justify-content: center;
+}
+.table {
+    max-width: 900px;
+    margin: 0 !important;
+}
+.tableBody {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+.tableRow {
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+.imageInRow {
+    border: none;
+    text-align: center;
+    width: 160px;
+    height: 210px
+}
+.gamePrice {
+    border: none;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+    

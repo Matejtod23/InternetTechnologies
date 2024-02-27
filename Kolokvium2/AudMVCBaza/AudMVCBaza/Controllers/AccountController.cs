@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -133,7 +134,25 @@ namespace AudMVCBaza.Controllers
                     return View(model);
             }
         }
+        public ActionResult AddUserToRoll()
+        {
+            AddToRoleModel model = new AddToRoleModel();
+            model.Roles = new List<string>() { "Administrator", "Editor", "User" };
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddRole(AddToRoleModel model)
+        {
+            var email = model.Email;
+            var user = UserManager.FindByEmail(email);
+            if (user == null)
+            {
+                throw new HttpException(404, "There is no user with email: " + email);
+            }
 
+            UserManager.AddToRole(user.Id, model.SelectedRole);
+            return RedirectToAction("Index", "Clients");
+        }
         //
         // GET: /Account/Register
         [AllowAnonymous]

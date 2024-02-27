@@ -10,6 +10,8 @@ using AudMVCBaza.Models;
 
 namespace AudMVCBaza.Controllers
 {
+    /*[Authorize] vo ramki na kontroler vo filter se komentira*/
+    [Authorize(Roles = "Administrator, Editor")]
     public class MoviesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -59,6 +61,7 @@ namespace AudMVCBaza.Controllers
         }
 
         // GET: Movies/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)

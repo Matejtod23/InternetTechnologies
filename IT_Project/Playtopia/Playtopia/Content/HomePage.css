@@ -1,0 +1,34 @@
+﻿.mainC {
+    background: url("../Images/homeWallpaper.jpg") no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.title {
+    position: absolute;
+    margin-top: 220px;
+    margin-left: 120px;
+    color: #f3ba2d;
+    font-weight: bold;
+    max-width: 400px;
+}
+.title h1 {
+    font-size: calc(1.375rem + 4vw);
+}
+.libButton{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+}
+.link {
+    text-align: center;
+    background: #f3ba2d;
+    width: 40%;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 30px;
+}
+.slogan p{
+    color: white;
+    text-align: justify;
+}

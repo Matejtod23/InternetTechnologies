@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Doctor_Patient.Models.Doctor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="doctors">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Profession)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hospital.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hospital.Address)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profession)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hospital.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hospital.Address)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <button class="btn btn-primary deleteButton" dataServiceId="@item.Id">Delete</button> 
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id });
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@section scripts{
+
+    <script>
+        
+        $(document).ready(function () {
+            var table = $("#doctors").DataTable();
+            $("#doctors .deleteButton").on("click", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/Doctors/Delete/" + button.attr("dataServiceId"),
+                            method: "GET",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            },
+                            error: function (err) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    
+    </script>
+}

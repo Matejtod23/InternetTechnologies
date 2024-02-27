@@ -1,0 +1,74 @@
+﻿@model Playtopia.Models.Customer
+@{
+    ViewBag.Title = "ShoppingCart";
+    var fullPrice = 0;
+}
+<h2 style="margin-bottom: 30px">Your cart @Model.Name</h2>
+
+
+    @foreach (var game in Model.Games)
+    {
+        fullPrice += game.price;
+
+
+        <div class="GameCard" style="display: flex; margin-bottom: 10px">
+                <img src="@game.ImageUrl" width="80px"/>
+                <div style="margin-left: 10px; font-size: 20px">
+                    <p style="font-weight: bold">@game.Title</p>
+                    <p>@game.price $</p>
+                    @Html.ActionLink("Remove", "RemoveGame", "Customers", new { id = game.Id}, new { @class="btn btn-primary removeB"})
+                </div>
+            </div>
+    }
+<div style="width: 100%; height: 70px">
+    <button type="submit" class="btn btn-primary" id="BuyButton" style="float: right; margin-left: 20px; padding: 5px 15px">Buy</button>
+    <h4 style="float: right; font-weight: bold">Total price: <span>@fullPrice</span> $</h4>
+</div>
+<style>
+    .removeB {
+        padding: 5px 10px;
+    }
+</style>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#BuyButton").click(function () {
+                bootbox.confirm({
+                    title: "Confirmation",
+                    message: "Are you sure you want to buy these items?",
+                    buttons: {
+                        confirm: {
+                            label: "Yes",
+                            className: "btn-success"
+                        },
+                        cancel: {
+                            label: "No",
+                            className: "btn-secondary"
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            // User clicked "Yes," show success message
+                            bootbox.alert("Successfully bought items");
+
+                            $.ajax({
+                                url: "/Customers/RemoveAllGames",
+                                type: "POST"
+                            });
+
+                            setTimeout(function () {
+                                window.location.href = '/Games/Index'; // Replace with the actual URL
+                            }, 50);
+                            
+                        } else {
+                            // User clicked "No" or closed the dialog, do nothing
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
+}

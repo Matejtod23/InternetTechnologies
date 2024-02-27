@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "../Shared/_LayoutNoBody.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/Content/HomePage.css"/>
+</head>
+<body>
+<div class="conatiner mainC">
+    <div class="title">
+        <h1>PLAYTOPIA</h1>
+        <div class="slogan">
+            <p>Embark on Epic Quests, Conquer Virtual Realms, and Forge Unforgettable Legends - Your Ultimate Gaming Destination Awaits!</p>
+        </div>
+        <div class="link">
+            @Html.ActionLink("LIBRARY", "Index", "Games", new { area = "" }, new {@class="libButton"})
+        </div>
+    </div>
+</div>
+</body>
+
+

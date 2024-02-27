@@ -1,0 +1,52 @@
+﻿@model Playtopia.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+}
+<head>
+    <link rel="stylesheet" href="~/Content/GameDetailsStyles.css" />
+</head>
+<h2>Details for game</h2>
+
+<div class="container">
+    <hr />
+    <div class="content">
+        <div class="imageContainer">
+            <img src="@Model.ImageUrl"/>
+        </div>
+    
+        <div>
+            <dd style="font-size: 35px">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt style="font-size: 20px">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd style="font-size: 16px">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt style="font-size: 20px">
+                @Html.DisplayNameFor(model => model.price)
+            </dt>
+            <dd style="font-size: 30px">
+                @Html.DisplayFor(model => model.price) $
+            </dd>
+            @using (Html.BeginForm("BuyGame", "Customers", FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.Id)
+                <button class="BuyButton" type="submit">Add to cart</button>
+            }
+
+        </div>
+    </div>
+   
+</div>
+
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    }
+    | @Html.ActionLink("Back to List", "Index")
+</p>
+

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Playtopia.Models.Game>
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+    <link rel="stylesheet" href="~/Content/GameIndexPage.css" />
+</head>
+<h2>Index</h2>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+<table class="table" id="gameTable">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th style="display: none">
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th style="display: none"></th>
+    </tr>
+    </thead>
+    <tbody class="tableBody">
+    @foreach (var item in Model)
+    {
+        <tr class="tableRow">
+            <td class="gameTitle">
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td class="imageInRow">
+                <img src="@item.ImageUrl" style="max-width: 150px; max-height: 200px"/>
+            </td>
+            <td class="gamePrice">
+                @Html.DisplayFor(modelItem => item.price) $
+            </td>
+            <td class="buttons">
+                <!--<p style="margin: 0; text-align: center">@item.price $</p>-->
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+    
+
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#gameTable").DataTable();
+        })
+    </script>
+}

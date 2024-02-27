@@ -1,0 +1,21 @@
+﻿.imageContainer {
+    max-width: 400px;
+    max-height: 300px;
+    position: relative;
+    margin: 20px 150px 60px 0;
+}
+.imageContainer img {
+    object-fit: cover;
+}
+.content {
+    display: flex;
+}
+.BuyButton {
+    margin-top: 10px;
+    padding: 5px 30px;
+    border-radius: 20px;
+    background: rgb(58, 133, 254);
+    color: white;
+    font-family: sans-serif;
+}
+.bu
